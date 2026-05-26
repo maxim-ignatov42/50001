@@ -65,7 +65,8 @@ int main(int argc, char* argv[]) {
                 else if (cmd == "MEAN") {
                     std::cout << areaMean(polygons) << std::endl;
                 }
-                else if (std::all_of(cmd.begin(), cmd.end(), std::isdigit)) {
+                else if (std::all_of(cmd.begin(), cmd.end(),
+                    [](unsigned char symbol) { return std::isdigit(symbol); })) {
                     std::cout << area(polygons, std::stoull(cmd)) << std::endl;
                 }
                 else {
@@ -113,7 +114,8 @@ int main(int argc, char* argv[]) {
                 else if (cmd == "ODD") {
                     std::cout << countOdd(polygons) << std::endl;
                 }
-                else if (std::all_of(cmd.begin(), cmd.end(), std::isdigit)) {
+                else if (std::all_of(cmd.begin(), cmd.end(),
+                    [](unsigned char symbol) { return std::isdigit(symbol); })) {
                     std::cout << countNVertexes(polygons, std::stoull(cmd)) << std::endl;
                 }
                 else {
