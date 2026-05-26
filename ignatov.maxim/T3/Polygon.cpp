@@ -17,6 +17,12 @@ std::istream& operator>>(std::istream& in, Polygon& dest)
         polygon.points_.push_back(point);
     }
 
+    in >> std::ws;
+    if (!in.eof()) {
+        in.setstate(std::ios::failbit);
+        return in;
+    }
+
     if (in) {
         dest = std::move(polygon);
     }
