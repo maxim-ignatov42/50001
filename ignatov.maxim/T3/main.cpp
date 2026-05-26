@@ -31,7 +31,10 @@ int main(int argc, char* argv[]) {
     while (std::getline(std::cin, line)) {
         std::istringstream cmdStream(line);
         std::string cmd;
-        cmdStream >> cmd;
+        if (!(cmdStream >> cmd)) {
+            std::cerr << "<INVALID COMMAND>" << std::endl;
+            continue;
+        }
 
         std::cout << std::setprecision(1) << std::fixed;
 
@@ -40,6 +43,7 @@ int main(int argc, char* argv[]) {
                 Polygon target;
                 if (!(cmdStream >> target)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
+                    continue;
                 }
                 size_t removed = rmecho(polygons, target);
                 std::cout << removed << std::endl;
@@ -49,6 +53,7 @@ int main(int argc, char* argv[]) {
                 Polygon target;
                 if (!(cmdStream >> target)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
+                    continue;
                 }
                 size_t count = same(polygons, target);
                 std::cout << count << std::endl;
@@ -57,6 +62,7 @@ int main(int argc, char* argv[]) {
             else if (cmd == "AREA") {
                 if (!(cmdStream >> cmd)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
+                    continue;
                 }
                 if (cmd == "EVEN") {
                     std::cout << area(polygons, true) << std::endl;
@@ -69,7 +75,7 @@ int main(int argc, char* argv[]) {
                 }
                 else if (std::all_of(cmd.begin(), cmd.end(),
                     [](unsigned char symbol) { return std::isdigit(symbol); })) {
-                    std::cout << area(polygons, std::stoull(cmd)) << std::endl;
+                    std::cout << areaNVertexes(polygons, std::stoull(cmd)) << std::endl;
                 }
                 else {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
@@ -79,6 +85,7 @@ int main(int argc, char* argv[]) {
             else if (cmd == "MIN") {
                 if (!(cmdStream >> cmd)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
+                    continue;
                 }
                 if (cmd == "AREA") {
                     std::cout << minArea(polygons) << std::endl;
@@ -94,6 +101,7 @@ int main(int argc, char* argv[]) {
             else if (cmd == "MAX") {
                 if (!(cmdStream >> cmd)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
+                    continue;
                 }
                 if (cmd == "AREA") {
                     std::cout << maxArea(polygons) << std::endl;
@@ -109,6 +117,7 @@ int main(int argc, char* argv[]) {
             else if (cmd == "COUNT") {
                 if (!(cmdStream >> cmd)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
+                    continue;
                 }
                 if (cmd == "EVEN") {
                     std::cout << countEven(polygons) << std::endl;
