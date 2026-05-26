@@ -15,7 +15,7 @@ std::vector<Point> normalize(const Polygon& poly) {
     return norm;
 }
 
-size_t rmecho(std::vector<Polygon>& polygons, const Polygon& target) 
+size_t rmecho(std::vector<Polygon>& polygons, const Polygon& target)
 {
     if (polygons.empty()) {
         throw std::runtime_error("ERROR: Empty polygons vector");
@@ -30,7 +30,7 @@ size_t rmecho(std::vector<Polygon>& polygons, const Polygon& target)
     return removed;
 }
 
-size_t same(const std::vector<Polygon>& polygons, const Polygon& target) 
+size_t same(const std::vector<Polygon>& polygons, const Polygon& target)
 {
     if (polygons.empty()) {
         throw std::runtime_error("ERROR: Empty polygons vector");
