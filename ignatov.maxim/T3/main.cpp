@@ -75,7 +75,12 @@ int main(int argc, char* argv[]) {
                 }
                 else if (std::all_of(cmd.begin(), cmd.end(),
                     [](unsigned char symbol) { return std::isdigit(symbol); })) {
-                    std::cout << areaNVertexes(polygons, std::stoull(cmd)) << std::endl;
+                    size_t n = std::stoull(cmd);
+                    if (n < 3) {
+                        std::cout << "<INVALID COMMAND>" << std::endl;
+                        continue;
+                    }
+                    std::cout << areaNVertexes(polygons, n) << std::endl;
                 }
                 else {
                     std::cout << "<INVALID COMMAND>" << std::endl;
@@ -127,7 +132,12 @@ int main(int argc, char* argv[]) {
                 }
                 else if (std::all_of(cmd.begin(), cmd.end(),
                     [](unsigned char symbol) { return std::isdigit(symbol); })) {
-                    std::cout << countNVertexes(polygons, std::stoull(cmd)) << std::endl;
+                    size_t n = std::stoull(cmd);
+                    if (n < 3) {
+                        std::cout << "<INVALID COMMAND>" << std::endl;
+                        continue;
+                    }
+                    std::cout << countNVertexes(polygons, n) << std::endl;
                 }
                 else {
                     std::cout << "<INVALID COMMAND>" << std::endl;

@@ -1,6 +1,7 @@
 #ifndef READER_H
 #define READER_H
 #include <iostream>
+#include <sstream>
 #include <vector>
 #include <limits>
 #include "Polygon.h"

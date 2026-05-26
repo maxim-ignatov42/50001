@@ -3,16 +3,13 @@
 void polygonReader(std::istream& in, std::vector<Polygon>& dest)
 {
     std::vector<Polygon> polygons;
-    while (!in.eof()) {
-        Polygon polygon;
-        in >> polygon;
-        if (!polygon.points_.empty()) {
-            polygons.push_back(polygon);
-        }
-
-        if (in.fail() && !in.eof()) {
-            in.clear();
-            in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::string line;
+    while (std::getline(in, line)) {
+        if (line.empty()) continue;
+        std::istringstream iss(line);
+        Polygon poly;
+        if (iss >> poly) {
+            polygons.push_back(poly);
         }
     }
 
