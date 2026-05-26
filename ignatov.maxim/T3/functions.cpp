@@ -61,10 +61,6 @@ double area(const std::vector<Polygon>& polygons, bool isSummOfEven)
 
 double areaNVertexes(const std::vector<Polygon>& polygons, size_t nVertexes)
 {
-    if (polygons.empty()) {
-        throw std::runtime_error("ERROR: Empty polygons vector");
-    }
-
     double totalSumm = 0.0;
     totalSumm = std::accumulate(polygons.begin(), polygons.end(), totalSumm,
         [&nVertexes](double summ, const Polygon& polygon) {
@@ -148,10 +144,6 @@ size_t maxVertexes(const std::vector<Polygon>& polygons)
 
 size_t countEven(const std::vector<Polygon>& polygons)
 {
-    if (polygons.empty()) {
-        throw std::runtime_error("ERROR: Empty polygons vector");
-    }
-
     size_t count = std::count_if(polygons.begin(), polygons.end(),
         [](const Polygon& polygon)
         { return polygon.points_.size() % 2 == 0; });
@@ -160,10 +152,6 @@ size_t countEven(const std::vector<Polygon>& polygons)
 
 size_t countOdd(const std::vector<Polygon>& polygons)
 {
-    if (polygons.empty()) {
-        throw std::runtime_error("ERROR: Empty polygons vector");
-    }
-
     size_t count = std::count_if(polygons.begin(), polygons.end(),
         [](const Polygon& polygon)
         { return polygon.points_.size() % 2 == 1; });
@@ -172,10 +160,6 @@ size_t countOdd(const std::vector<Polygon>& polygons)
 
 size_t countNVertexes(const std::vector<Polygon>& polygons, size_t nVertexes)
 {
-    if (polygons.empty()) {
-        throw std::runtime_error("ERROR: Empty polygons vector");
-    }
-
     size_t count = std::count_if(polygons.begin(), polygons.end(),
         [&nVertexes](const Polygon& polygon)
         { return polygon.points_.size() == nVertexes; });
