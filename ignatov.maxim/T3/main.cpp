@@ -33,6 +33,8 @@ int main(int argc, char* argv[]) {
         std::string cmd;
         cmdStream >> cmd;
 
+        std::cout << std::setprecision(1) << std::fixed;
+
         try {
             if (cmd == "RMECHO") {
                 Polygon target;
@@ -104,7 +106,7 @@ int main(int argc, char* argv[]) {
                 }
             }
 
-            else if (cmd == "AREA") {
+            else if (cmd == "COUNT") {
                 if (!(cmdStream >> cmd)) {
                     std::cerr << "<INVALID COMMAND>" << std::endl;
                 }
