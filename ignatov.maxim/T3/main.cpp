@@ -29,6 +29,9 @@ int main(int argc, char* argv[]) {
     inFile.close();
     std::string line;
 
+    iofmtguard guard(std::cout);
+    std::cout << std::setprecision(1) << std::fixed;
+
     while (std::getline(std::cin, line)) {
         std::istringstream cmdStream(line);
         std::string cmd;
@@ -36,9 +39,6 @@ int main(int argc, char* argv[]) {
             std::cout << "<INVALID COMMAND>" << std::endl;
             continue;
         }
-
-        iofmtguard guard(std::cout);
-        std::cout << std::setprecision(1) << std::fixed;
 
         try {
             if (cmd == "RMECHO") {
