@@ -7,7 +7,7 @@ std::istream& operator>>(std::istream& in, Polygon& dest)
     in >> nPoints;
     if (nPoints < 3) {
         in.setstate(std::ios::failbit);
-        return;
+        return in;
     }
 
     Polygon polygon;
