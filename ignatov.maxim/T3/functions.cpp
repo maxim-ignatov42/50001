@@ -121,7 +121,7 @@ size_t maxVertexes(const std::vector<Polygon>& polygons)
 size_t countEven(const std::vector<Polygon>& polygons)
 {
     size_t count = std::count_if(polygons.begin(), polygons.end(),
-        [](const Polygon& polygon) 
+        [](const Polygon& polygon)
         { return polygon.points_.size() % 2 == 0; });
     return count;
 }
