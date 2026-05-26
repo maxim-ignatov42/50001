@@ -2,19 +2,20 @@
 #include <vector>
 #include <iostream>
 #include <iterator>
+#include <numeric>
 #include "Polygon.h"
 #include "functions.h"
 
 std::vector<Point> normalize(const Polygon& poly) {
-    if (poly.points.empty()) return {};
-    auto minX = std::min_element(poly.points.begin(), poly.points.end(),
+    if (poly.points_.empty()) return {};
+    auto minX = std::min_element(poly.points_.begin(), poly.points_.end(),
         [](const Point& a, const Point& b) { return a.x < b.x; })->x;
-    auto minY = std::min_element(poly.points.begin(), poly.points.end(),
+    auto minY = std::min_element(poly.points_.begin(), poly.points_.end(),
         [](const Point& a, const Point& b) { return a.y < b.y; })->y;
 
     std::vector<Point> norm;
-    norm.reserve(poly.points.size());
-    std::transform(poly.points.begin(), poly.points.end(), std::back_inserter(norm),
+    norm.reserve(poly.points_.size());
+    std::transform(poly.points_.begin(), poly.points_.end(), std::back_inserter(norm),
         [minX, minY](const Point& p) { return Point{ p.x - minX, p.y - minY }; });
     std::sort(norm.begin(), norm.end());
     return norm;
@@ -36,4 +37,107 @@ size_t same(const std::vector<Polygon>& polygons, const Polygon& target) {
         [&targetNorm](const Polygon& p) {
             return normalize(p) == targetNorm;
         });
+}
+
+double area(const std::vector<Polygon>& polygons, bool isSummOfEven)
+{
+    size_t remainder = (isSummOfEven) ? 0 : 1;
+    double totalSumm = 0.0;
+    totalSumm = std::accumulate(polygons.begin(), polygons.end(), totalSumm,
+        [&remainder](double summ, const Polygon& polygon) {
+            if (polygon.points_.size() % 2 == remainder) {
+                return summ += polygon.getArea();
+            }
+            return summ;
+        }
+    );
+
+    return totalSumm;
+}
+
+double areaNVertexes(const std::vector<Polygon>& polygons, size_t nVertexes)
+{
+    double totalSumm = 0.0;
+    totalSumm = std::accumulate(polygons.begin(), polygons.end(), totalSumm,
+        [&nVertexes](double summ, const Polygon& polygon) {
+            if (polygon.points_.size() == nVertexes) {
+                return summ += polygon.getArea();
+            }
+            return summ;
+        }
+    );
+
+    return totalSumm;
+}
+
+double areaMean(const std::vector<Polygon>& polygons)
+{
+    double totalSumm = 0.0;
+    totalSumm = std::accumulate(polygons.begin(), polygons.end(), totalSumm,
+        [](double summ, const Polygon& polygon) {
+            return summ += polygon.getArea();
+        }
+    );
+
+    return totalSumm / polygons.size();
+}
+
+double minArea(const std::vector<Polygon>& polygons)
+{
+    auto minPolygon = std::min_element(polygons.begin(), polygons.end(),
+        [](const Polygon& thisP, const Polygon& otherP)
+        { return thisP.getArea() < otherP.getArea(); });
+
+    return minPolygon->getArea();
+}
+
+double maxArea(const std::vector<Polygon>& polygons)
+{
+    auto maxPolygon = std::max_element(polygons.begin(), polygons.end(),
+        [](const Polygon& thisP, const Polygon& otherP)
+        { return thisP.getArea() < otherP.getArea(); });
+
+    return maxPolygon->getArea();
+}
+
+size_t minVertexes(const std::vector<Polygon>& polygons)
+{
+    auto minPolygon = std::min_element(polygons.begin(), polygons.end(),
+        [](const Polygon& thisP, const Polygon& otherP)
+        { return thisP.points_.size() < otherP.points_.size(); });
+
+    return minPolygon->points_.size();
+}
+
+size_t maxVertexes(const std::vector<Polygon>& polygons)
+{
+    auto maxPolygon = std::max_element(polygons.begin(), polygons.end(),
+        [](const Polygon& thisP, const Polygon& otherP)
+        { return thisP.points_.size() < otherP.points_.size(); });
+
+    return maxPolygon->points_.size();
+}
+
+size_t countEven(const std::vector<Polygon>& polygons)
+{
+    size_t count = std::count_if(polygons.begin(), polygons.end(),
+        [](const Polygon& polygon) 
+        { return polygon.points_.size() % 2 == 0; });
+    return count;
+}
+
+size_t countOdd(const std::vector<Polygon>& polygons)
+{
+    size_t count = std::count_if(polygons.begin(), polygons.end(),
+        [](const Polygon& polygon)
+        { return polygon.points_.size() % 2 == 1; });
+    return count;
+}
+
+size_t countNVertexes(const std::vector<Polygon>& polygons, size_t nVertexes)
+{
+    size_t count = std::count_if(polygons.begin(), polygons.end(),
+        [&nVertexes](const Polygon& polygon)
+        { return polygon.points_.size() == nVertexes; });
+    return count;
 }

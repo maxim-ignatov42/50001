@@ -10,7 +10,7 @@ void polygonReader(std::istream& in, std::vector<Polygon>& dest)
     while (!in.eof()) {
         Polygon polygon;
         in >> polygon;
-        if (!polygon.points.empty()) {
+        if (!polygon.points_.empty()) {
             polygons.push_back(polygon);
         }
 
