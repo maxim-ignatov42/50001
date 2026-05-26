@@ -1,7 +1,11 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
-#include <iostream>
+#include <algorithm>
 #include <vector>
+#include <iostream>
+#include <iterator>
+#include <numeric>
+#include <cctype>
 #include "Polygon.h"
 
 std::vector<Point> normalize(const Polygon& poly);

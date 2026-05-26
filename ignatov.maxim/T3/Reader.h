@@ -2,6 +2,7 @@
 #define READER_H
 #include <iostream>
 #include <vector>
+#include <limits>
 #include "Polygon.h"
 
 void polygonReader(std::istream& in, std::vector<Polygon>& dest);

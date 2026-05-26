@@ -1,4 +1,3 @@
-#include <iostream>
 #include "DelimiterIO.h"
 
 std::istream& operator>>(std::istream& in, DelimiterIO&& dest)

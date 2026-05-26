@@ -1,6 +1,8 @@
 #ifndef POINT_H
 #define POINT_H
 #include <iostream>
+#include <string>
+#include "DelimiterIO.h"
 
 struct Point
 {

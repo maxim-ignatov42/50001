@@ -1,7 +1,4 @@
-#include <iostream>
-#include <string>
 #include "Point.h"
-#include "DelimiterIO.h"
 
 std::istream& operator>>(std::istream& in, Point& dest)
 {

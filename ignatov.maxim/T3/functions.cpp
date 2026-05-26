@@ -1,9 +1,3 @@
-#include <algorithm>
-#include <vector>
-#include <iostream>
-#include <iterator>
-#include <numeric>
-#include "Polygon.h"
 #include "functions.h"
 
 std::vector<Point> normalize(const Polygon& poly) {
