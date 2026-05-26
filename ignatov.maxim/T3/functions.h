@@ -6,6 +6,7 @@
 #include <iterator>
 #include <numeric>
 #include <cctype>
+#include <stdexcept>
 #include "Polygon.h"
 
 std::vector<Point> normalize(const Polygon& poly);

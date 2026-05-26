@@ -13,7 +13,6 @@ void polygonReader(std::istream& in, std::vector<Polygon>& dest)
         if (in.fail() && !in.eof()) {
             in.clear();
             in.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            return;
         }
     }
 

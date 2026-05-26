@@ -13,13 +13,13 @@
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
-        std::cerr << "ERROR: Filename not provided" << std::endl;
+        std::cout << "ERROR: Filename not provided" << std::endl;
         return 1;
     }
 
     std::ifstream inFile(argv[1]);
     if (!inFile.is_open()) {
-        std::cerr << "ERROR: Failed to open file" << std::endl;
+        std::cout << "ERROR: Failed to open file" << std::endl;
         return 1;
     }
 
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
         std::istringstream cmdStream(line);
         std::string cmd;
         if (!(cmdStream >> cmd)) {
-            std::cerr << "<INVALID COMMAND>" << std::endl;
+            std::cout << "<INVALID COMMAND>" << std::endl;
             continue;
         }
 
@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
             if (cmd == "RMECHO") {
                 Polygon target;
                 if (!(cmdStream >> target)) {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                     continue;
                 }
                 size_t removed = rmecho(polygons, target);
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
             else if (cmd == "SAME") {
                 Polygon target;
                 if (!(cmdStream >> target)) {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                     continue;
                 }
                 size_t count = same(polygons, target);
@@ -61,7 +61,7 @@ int main(int argc, char* argv[]) {
 
             else if (cmd == "AREA") {
                 if (!(cmdStream >> cmd)) {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                     continue;
                 }
                 if (cmd == "EVEN") {
@@ -78,13 +78,13 @@ int main(int argc, char* argv[]) {
                     std::cout << areaNVertexes(polygons, std::stoull(cmd)) << std::endl;
                 }
                 else {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                 }
             }
 
             else if (cmd == "MIN") {
                 if (!(cmdStream >> cmd)) {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                     continue;
                 }
                 if (cmd == "AREA") {
@@ -94,13 +94,13 @@ int main(int argc, char* argv[]) {
                     std::cout << minVertexes(polygons) << std::endl;
                 }
                 else {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                 }
             }
 
             else if (cmd == "MAX") {
                 if (!(cmdStream >> cmd)) {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                     continue;
                 }
                 if (cmd == "AREA") {
@@ -110,13 +110,13 @@ int main(int argc, char* argv[]) {
                     std::cout << maxVertexes(polygons) << std::endl;
                 }
                 else {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                 }
             }
 
             else if (cmd == "COUNT") {
                 if (!(cmdStream >> cmd)) {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                     continue;
                 }
                 if (cmd == "EVEN") {
@@ -130,16 +130,16 @@ int main(int argc, char* argv[]) {
                     std::cout << countNVertexes(polygons, std::stoull(cmd)) << std::endl;
                 }
                 else {
-                    std::cerr << "<INVALID COMMAND>" << std::endl;
+                    std::cout << "<INVALID COMMAND>" << std::endl;
                 }
             }
 
             else {
-                std::cerr << "<INVALID COMMAND>" << std::endl;
+                std::cout << "<INVALID COMMAND>" << std::endl;
             }
         }
         catch (const std::exception&) {
-            std::cerr << "<INVALID COMMAND>" << std::endl;
+            std::cout << "<INVALID COMMAND>" << std::endl;
         }
     }
     return 0;
