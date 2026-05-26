@@ -10,6 +10,7 @@
 #include "Polygon.h"
 #include "Reader.h"
 #include "functions.h"
+#include "iofmtguard.h"
 
 int main(int argc, char* argv[]) {
     if (argc < 2) {
@@ -36,6 +37,7 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
+        iofmtguard guard(std::cout);
         std::cout << std::setprecision(1) << std::fixed;
 
         try {

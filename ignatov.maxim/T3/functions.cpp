@@ -2,9 +2,9 @@
 
 std::vector<Point> normalize(const Polygon& poly) {
     if (poly.points_.empty()) return {};
-    auto minX = std::min_element(poly.points_.begin(), poly.points_.end(),
+    int minX = std::min_element(poly.points_.begin(), poly.points_.end(),
         [](const Point& a, const Point& b) { return a.x < b.x; })->x;
-    auto minY = std::min_element(poly.points_.begin(), poly.points_.end(),
+    int minY = std::min_element(poly.points_.begin(), poly.points_.end(),
         [](const Point& a, const Point& b) { return a.y < b.y; })->y;
 
     std::vector<Point> norm;
