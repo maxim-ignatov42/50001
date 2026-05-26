@@ -67,10 +67,10 @@ int main(int argc, char* argv[]) {
                     continue;
                 }
                 if (cmd == "EVEN") {
-                    std::cout << area(polygons, true) << std::endl;
+                    std::cout << areaEven(polygons) << std::endl;
                 }
                 else if (cmd == "ODD") {
-                    std::cout << area(polygons, false) << std::endl;
+                    std::cout << areaOdd(polygons) << std::endl;
                 }
                 else if (cmd == "MEAN") {
                     std::cout << areaMean(polygons) << std::endl;

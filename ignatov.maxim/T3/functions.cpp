@@ -43,13 +43,27 @@ size_t same(const std::vector<Polygon>& polygons, const Polygon& target)
         });
 }
 
-double area(const std::vector<Polygon>& polygons, bool isSummOfEven)
+double areaEven(const std::vector<Polygon>& polygons)
 {
-    size_t remainder = (isSummOfEven) ? 0 : 1;
     double totalSumm = 0.0;
     totalSumm = std::accumulate(polygons.begin(), polygons.end(), totalSumm,
-        [&remainder](double summ, const Polygon& polygon) {
-            if (polygon.points_.size() % 2 == remainder) {
+        [](double summ, const Polygon& polygon) {
+            if (polygon.points_.size() % 2 == 0) {
+                return summ += polygon.getArea();
+            }
+            return summ;
+        }
+    );
+
+    return totalSumm;
+}
+
+double areaOdd(const std::vector<Polygon>& polygons)
+{
+    double totalSumm = 0.0;
+    totalSumm = std::accumulate(polygons.begin(), polygons.end(), totalSumm,
+        [](double summ, const Polygon& polygon) {
+            if (polygon.points_.size() % 2 == 1) {
                 return summ += polygon.getArea();
             }
             return summ;
